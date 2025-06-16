@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dokuments",
+  "info": {
+    "singularName": "dokumenty",
+    "pluralName": "dokuments",
+    "displayName": "Документы"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}
