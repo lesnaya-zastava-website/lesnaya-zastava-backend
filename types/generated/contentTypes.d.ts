@@ -402,6 +402,37 @@ export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNashaKomandaNashaKomanda
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'team_members';
+  info: {
+    displayName: '\u041D\u0430\u0448\u0430 \u043A\u043E\u043C\u0430\u043D\u0434\u0430';
+    pluralName: 'team-members';
+    singularName: 'nasha-komanda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fullName: Schema.Attribute.String;
+    job: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nasha-komanda.nasha-komanda'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -912,6 +943,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
+      'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
