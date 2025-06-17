@@ -402,6 +402,35 @@ export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiInfrastrukturaGalereyaInfrastrukturaGalereya
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'infrastructure_photos';
+  info: {
+    displayName: '\u0418\u043D\u0444\u0440\u0430\u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 - \u0413\u0430\u043B\u0435\u0440\u0435\u044F';
+    pluralName: 'infrastructure-photos';
+    singularName: 'infrastruktura-galereya';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::infrastruktura-galereya.infrastruktura-galereya'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNashaKomandaNashaKomanda
   extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
@@ -427,6 +456,38 @@ export interface ApiNashaKomandaNashaKomanda
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPedagogicheskijSostavPedagogicheskijSostav
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'teachers';
+  info: {
+    displayName: '\u041F\u0435\u0434\u0430\u0433\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0441\u043E\u0441\u0442\u0430\u0432';
+    pluralName: 'teachers';
+    singularName: 'pedagogicheskij-sostav';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fullName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pedagogicheskij-sostav.pedagogicheskij-sostav'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    qualification: Schema.Attribute.String;
+    specialization: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -943,7 +1004,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
+      'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
+      'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

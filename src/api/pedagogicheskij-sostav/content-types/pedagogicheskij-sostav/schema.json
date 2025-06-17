@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teachers",
+  "info": {
+    "singularName": "pedagogicheskij-sostav",
+    "pluralName": "teachers",
+    "displayName": "Педагогический состав"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "qualification": {
+      "type": "string"
+    },
+    "specialization": {
+      "type": "string"
+    }
+  }
+}
