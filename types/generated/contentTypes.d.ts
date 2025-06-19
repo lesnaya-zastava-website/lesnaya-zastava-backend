@@ -404,10 +404,10 @@ export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
 
 export interface ApiInfrastrukturaGalereyaInfrastrukturaGalereya
   extends Struct.CollectionTypeSchema {
-  collectionName: 'infrastructure_photos';
+  collectionName: 'infrastruktura_galereyas';
   info: {
     displayName: '\u0418\u043D\u0444\u0440\u0430\u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u0430 - \u0413\u0430\u043B\u0435\u0440\u0435\u044F';
-    pluralName: 'infrastructure-photos';
+    pluralName: 'infrastruktura-galereyas';
     singularName: 'infrastruktura-galereya';
   };
   options: {
@@ -423,7 +423,10 @@ export interface ApiInfrastrukturaGalereyaInfrastrukturaGalereya
       'api::infrastruktura-galereya.infrastruktura-galereya'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images', true>;
+    photos: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

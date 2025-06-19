@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "infrastructure_photos",
+  "collectionName": "infrastruktura_galereyas",
   "info": {
     "singularName": "infrastruktura-galereya",
-    "pluralName": "infrastructure-photos",
+    "pluralName": "infrastruktura-galereyas",
     "displayName": "Инфраструктура - Галерея"
   },
   "options": {
@@ -11,11 +11,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "photo": {
+    "photos": {
       "type": "media",
       "multiple": true,
       "allowedTypes": [
-        "images"
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     }
   }
