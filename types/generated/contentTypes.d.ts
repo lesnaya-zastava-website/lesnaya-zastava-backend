@@ -373,6 +373,37 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'announcements';
+  info: {
+    displayName: '\u0410\u043D\u043E\u043D\u0441\u044B \u0438 \u0430\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B\u0435 \u0442\u0435\u043C\u044B';
+    pluralName: 'announcements';
+    singularName: 'anonsy-i-aktualnye-shemy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
   collectionName: 'dokuments';
   info: {
@@ -1006,6 +1037,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy': ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
