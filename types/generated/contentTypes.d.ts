@@ -528,6 +528,35 @@ export interface ApiPedagogicheskijSostavPedagogicheskijSostav
   };
 }
 
+export interface ApiStoimostUslugStoimostUslug
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'service_prices';
+  info: {
+    displayName: '\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u0443\u0441\u043B\u0443\u0433';
+    pluralName: 'service-prices';
+    singularName: 'stoimost-uslug';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::stoimost-uslug.stoimost-uslug'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1042,6 +1071,7 @@ declare module '@strapi/strapi' {
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
+      'api::stoimost-uslug.stoimost-uslug': ApiStoimostUslugStoimostUslug;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
