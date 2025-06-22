@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "price_list_of_services",
+  "info": {
+    "singularName": "prajs-razvlekatelnyh-programm-i-dop-uslug",
+    "pluralName": "price-list-of-services",
+    "displayName": "Прайс развлекательных программ и доп. услуг"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

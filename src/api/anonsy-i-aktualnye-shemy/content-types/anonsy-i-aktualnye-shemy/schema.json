@@ -4,7 +4,7 @@
   "info": {
     "singularName": "anonsy-i-aktualnye-shemy",
     "pluralName": "announcements",
-    "displayName": "Анонсы и актуальные темы"
+    "displayName": "Анонсы и актуальные смены"
   },
   "options": {
     "draftAndPublish": true

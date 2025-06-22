@@ -377,7 +377,7 @@ export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
   extends Struct.CollectionTypeSchema {
   collectionName: 'announcements';
   info: {
-    displayName: '\u0410\u043D\u043E\u043D\u0441\u044B \u0438 \u0430\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B\u0435 \u0442\u0435\u043C\u044B';
+    displayName: '\u0410\u043D\u043E\u043D\u0441\u044B \u0438 \u0430\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u043C\u0435\u043D\u044B';
     pluralName: 'announcements';
     singularName: 'anonsy-i-aktualnye-shemy';
   };
@@ -522,6 +522,35 @@ export interface ApiPedagogicheskijSostavPedagogicheskijSostav
     publishedAt: Schema.Attribute.DateTime;
     qualification: Schema.Attribute.String;
     specialization: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'price_list_of_services';
+  info: {
+    displayName: '\u041F\u0440\u0430\u0439\u0441 \u0440\u0430\u0437\u0432\u043B\u0435\u043A\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0445 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C \u0438 \u0434\u043E\u043F. \u0443\u0441\u043B\u0443\u0433';
+    pluralName: 'price-list-of-services';
+    singularName: 'prajs-razvlekatelnyh-programm-i-dop-uslug';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1071,6 +1100,7 @@ declare module '@strapi/strapi' {
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
+      'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug': ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug;
       'api::stoimost-uslug.stoimost-uslug': ApiStoimostUslugStoimostUslug;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
