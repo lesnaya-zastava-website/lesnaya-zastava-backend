@@ -373,6 +373,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAktualnyePredlozheniyaAktualnyePredlozheniya
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'offers_of_services';
+  info: {
+    displayName: '\u0410\u043A\u0442\u0443\u0430\u043B\u044C\u043D\u044B\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F';
+    pluralName: 'offers-of-services';
+    singularName: 'aktualnye-predlozheniya';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::aktualnye-predlozheniya.aktualnye-predlozheniya'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
   extends Struct.CollectionTypeSchema {
   collectionName: 'announcements';
@@ -1095,6 +1124,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::aktualnye-predlozheniya.aktualnye-predlozheniya': ApiAktualnyePredlozheniyaAktualnyePredlozheniya;
       'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy': ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;

@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "offers_of_services",
+  "info": {
+    "singularName": "aktualnye-predlozheniya",
+    "pluralName": "offers-of-services",
+    "displayName": "Актуальные предложения"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
