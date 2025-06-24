@@ -509,6 +509,7 @@ export interface ApiNashaKomandaNashaKomanda
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.String;
     fullName: Schema.Attribute.String;
     job: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

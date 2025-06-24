@@ -23,6 +23,9 @@
     },
     "job": {
       "type": "string"
+    },
+    "email": {
+      "type": "string"
     }
   }
 }
