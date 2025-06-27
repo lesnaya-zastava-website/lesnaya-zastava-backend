@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history_photos",
+  "info": {
+    "singularName": "istoriya-fotografii",
+    "pluralName": "history-photos",
+    "displayName": "История - Фотографии"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

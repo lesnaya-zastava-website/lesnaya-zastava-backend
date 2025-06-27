@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materialno_tehnicheskaya_baza_photos",
+  "info": {
+    "singularName": "materialno-tehnicheskaya-baza-fotografii",
+    "pluralName": "materialno-tehnicheskaya-baza-photos",
+    "displayName": "Материально - техническая база - Фотографии"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

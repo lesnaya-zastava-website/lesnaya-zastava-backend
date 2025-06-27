@@ -433,6 +433,65 @@ export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
   };
 }
 
+export interface ApiBezopasnostDokumentyBezopasnostDokumenty
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'safety_docs';
+  info: {
+    displayName: '\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C - \u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B';
+    pluralName: 'safety-docs';
+    singularName: 'bezopasnost-dokumenty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    file: Schema.Attribute.Media<'files', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bezopasnost-dokumenty.bezopasnost-dokumenty'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBezopasnostFotografiiBezopasnostFotografii
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'safety_photos';
+  info: {
+    displayName: '\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
+    pluralName: 'safety-photos';
+    singularName: 'bezopasnost-fotografii';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bezopasnost-fotografii.bezopasnost-fotografii'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
   collectionName: 'dokuments';
   info: {
@@ -494,6 +553,123 @@ export interface ApiInfrastrukturaGalereyaInfrastrukturaGalereya
   };
 }
 
+export interface ApiIstoriyaFotografiiIstoriyaFotografii
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'history_photos';
+  info: {
+    displayName: '\u0418\u0441\u0442\u043E\u0440\u0438\u044F - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
+    pluralName: 'history-photos';
+    singularName: 'istoriya-fotografii';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::istoriya-fotografii.istoriya-fotografii'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKontaktyKontakty extends Struct.CollectionTypeSchema {
+  collectionName: 'contacts_photos';
+  info: {
+    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
+    pluralName: 'contacts-photos';
+    singularName: 'kontakty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kontakty.kontakty'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMaterialnoTehnicheskayaBazaFotografiiMaterialnoTehnicheskayaBazaFotografii
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'materialno_tehnicheskaya_baza_photos';
+  info: {
+    displayName: '\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044C\u043D\u043E - \u0442\u0435\u0445\u043D\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0431\u0430\u0437\u0430 - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
+    pluralName: 'materialno-tehnicheskaya-baza-photos';
+    singularName: 'materialno-tehnicheskaya-baza-fotografii';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::materialno-tehnicheskaya-baza-fotografii.materialno-tehnicheskaya-baza-fotografii'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMaterialnoTehnicheskayaBazaTekstMaterialnoTehnicheskayaBazaTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'technical_base_texts';
+  info: {
+    displayName: '\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u044C\u043D\u043E - \u0442\u0435\u0445\u043D\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0431\u0430\u0437\u0430 - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'technical-base-texts';
+    singularName: 'materialno-tehnicheskaya-baza-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::materialno-tehnicheskaya-baza-tekst.materialno-tehnicheskaya-baza-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNashaKomandaNashaKomanda
   extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
@@ -520,6 +696,37 @@ export interface ApiNashaKomandaNashaKomanda
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNashiProektyNashiProekty
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'our_projects';
+  info: {
+    displayName: '\u041D\u0430\u0448\u0438 \u043F\u0440\u043E\u0435\u043A\u0442\u044B';
+    pluralName: 'our-projects';
+    singularName: 'nashi-proekty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nashi-proekty.nashi-proekty'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -587,6 +794,35 @@ export interface ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgr
   };
 }
 
+export interface ApiSemejnyjFestivalMayovkaSemejnyjFestivalMayovka
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'maevka';
+  info: {
+    displayName: '\u0421\u0435\u043C\u0435\u0439\u043D\u044B\u0439 \u0444\u0435\u0441\u0442\u0438\u0432\u0430\u043B\u044C "\u041C\u0430\u0451\u0432\u043A\u0430"';
+    pluralName: 'maevka';
+    singularName: 'semejnyj-festival-mayovka';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::semejnyj-festival-mayovka.semejnyj-festival-mayovka'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStoimostUslugStoimostUslug
   extends Struct.CollectionTypeSchema {
   collectionName: 'service_prices';
@@ -606,6 +842,93 @@ export interface ApiStoimostUslugStoimostUslug
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::stoimost-uslug.stoimost-uslug'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVashiProektyFotografiiVashiProektyFotografii
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'your_project_photos';
+  info: {
+    displayName: '\u0412\u0430\u0448\u0438 \u043F\u0440\u043E\u0435\u043A\u0442\u044B - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
+    pluralName: 'your-project-photos';
+    singularName: 'vashi-proekty-fotografii';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vashi-proekty-fotografii.vashi-proekty-fotografii'
+    > &
+      Schema.Attribute.Private;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVashiProektyTekstVashiProektyTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'your_project_texts';
+  info: {
+    displayName: '\u0412\u0430\u0448\u0438 \u043F\u0440\u043E\u0435\u043A\u0442\u044B - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'your-project-texts';
+    singularName: 'vashi-proekty-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vashi-proekty-tekst.vashi-proekty-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'vzroslaya_smena_pro_yunost_posts';
+  info: {
+    displayName: '\u0412\u0437\u0440\u043E\u0441\u043B\u0430\u044F \u0441\u043C\u0435\u043D\u0430 "Pro_\u042E\u043D\u043E\u0441\u0442\u044C"';
+    pluralName: 'vzroslaya-smena-pro-yunost-posts';
+    singularName: 'vzroslaya-smena-pro-yunost';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost'
     > &
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images'>;
@@ -1127,12 +1450,23 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::aktualnye-predlozheniya.aktualnye-predlozheniya': ApiAktualnyePredlozheniyaAktualnyePredlozheniya;
       'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy': ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy;
+      'api::bezopasnost-dokumenty.bezopasnost-dokumenty': ApiBezopasnostDokumentyBezopasnostDokumenty;
+      'api::bezopasnost-fotografii.bezopasnost-fotografii': ApiBezopasnostFotografiiBezopasnostFotografii;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
+      'api::istoriya-fotografii.istoriya-fotografii': ApiIstoriyaFotografiiIstoriyaFotografii;
+      'api::kontakty.kontakty': ApiKontaktyKontakty;
+      'api::materialno-tehnicheskaya-baza-fotografii.materialno-tehnicheskaya-baza-fotografii': ApiMaterialnoTehnicheskayaBazaFotografiiMaterialnoTehnicheskayaBazaFotografii;
+      'api::materialno-tehnicheskaya-baza-tekst.materialno-tehnicheskaya-baza-tekst': ApiMaterialnoTehnicheskayaBazaTekstMaterialnoTehnicheskayaBazaTekst;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
+      'api::nashi-proekty.nashi-proekty': ApiNashiProektyNashiProekty;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
       'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug': ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug;
+      'api::semejnyj-festival-mayovka.semejnyj-festival-mayovka': ApiSemejnyjFestivalMayovkaSemejnyjFestivalMayovka;
       'api::stoimost-uslug.stoimost-uslug': ApiStoimostUslugStoimostUslug;
+      'api::vashi-proekty-fotografii.vashi-proekty-fotografii': ApiVashiProektyFotografiiVashiProektyFotografii;
+      'api::vashi-proekty-tekst.vashi-proekty-tekst': ApiVashiProektyTekstVashiProektyTekst;
+      'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost': ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

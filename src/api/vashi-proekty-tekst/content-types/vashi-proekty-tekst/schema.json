@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "your_project_texts",
+  "info": {
+    "singularName": "vashi-proekty-tekst",
+    "pluralName": "your-project-texts",
+    "displayName": "Ваши проекты - Текст"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}

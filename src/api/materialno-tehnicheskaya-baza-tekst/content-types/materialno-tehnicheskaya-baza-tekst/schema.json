@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "technical_base_texts",
+  "info": {
+    "singularName": "materialno-tehnicheskaya-baza-tekst",
+    "pluralName": "technical-base-texts",
+    "displayName": "Материально - техническая база - Текст"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}

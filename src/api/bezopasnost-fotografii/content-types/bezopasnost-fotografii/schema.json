@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "safety_photos",
+  "info": {
+    "singularName": "bezopasnost-fotografii",
+    "pluralName": "safety-photos",
+    "displayName": "Безопасность - Фотографии"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

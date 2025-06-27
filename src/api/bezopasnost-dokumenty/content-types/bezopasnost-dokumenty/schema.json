@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "safety_docs",
+  "info": {
+    "singularName": "bezopasnost-dokumenty",
+    "pluralName": "safety-docs",
+    "displayName": "Безопасность - Документы"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "file": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

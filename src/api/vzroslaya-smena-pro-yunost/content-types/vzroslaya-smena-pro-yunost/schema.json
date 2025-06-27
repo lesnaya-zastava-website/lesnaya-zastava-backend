@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vzroslaya_smena_pro_yunost_posts",
+  "info": {
+    "singularName": "vzroslaya-smena-pro-yunost",
+    "pluralName": "vzroslaya-smena-pro-yunost-posts",
+    "displayName": "Взрослая смена \"Pro_Юность\""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

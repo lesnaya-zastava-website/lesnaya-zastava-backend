@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "maevka",
+  "info": {
+    "singularName": "semejnyj-festival-mayovka",
+    "pluralName": "maevka",
+    "displayName": "Семейный фестиваль \"Маёвка\""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

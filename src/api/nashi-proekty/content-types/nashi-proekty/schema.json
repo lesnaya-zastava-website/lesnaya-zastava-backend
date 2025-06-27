@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "our_projects",
+  "info": {
+    "singularName": "nashi-proekty",
+    "pluralName": "our-projects",
+    "displayName": "Наши проекты"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    }
+  }
+}
