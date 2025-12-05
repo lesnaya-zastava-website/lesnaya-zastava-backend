@@ -492,6 +492,41 @@ export interface ApiBezopasnostFotografiiBezopasnostFotografii
   };
 }
 
+export interface ApiBezopasnostTekstBezopasnostTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'bezopasnost_teksts';
+  info: {
+    displayName: '\u0411\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'bezopasnost-teksts';
+    singularName: 'bezopasnost-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bezopasnost-tekst.bezopasnost-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
   collectionName: 'dokuments';
   info: {
@@ -576,6 +611,41 @@ export interface ApiIstoriyaFotografiiIstoriyaFotografii
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIstoriyaTekstIstoriyaTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'istoriya_teksts';
+  info: {
+    displayName: '\u0418\u0441\u0442\u043E\u0440\u0438\u044F - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'istoriya-teksts';
+    singularName: 'istoriya-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::istoriya-tekst.istoriya-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -903,7 +973,13 @@ export interface ApiVashiProektyTekstVashiProektyTekst
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.Text;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -933,6 +1009,185 @@ export interface ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsForm extends Struct.CollectionTypeSchema {
+  collectionName: 'forms';
+  info: {
+    displayName: 'form';
+    pluralName: 'forms';
+    singularName: 'form';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateFrom: Schema.Attribute.String;
+    dateTill: Schema.Attribute.String;
+    errorMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.form'
+    > &
+      Schema.Attribute.Private;
+    notifications: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.notification'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    steps: Schema.Attribute.JSON;
+    submissions: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.submission'
+    >;
+    successMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsNotification
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'notification';
+  info: {
+    displayName: 'Email notifications';
+    pluralName: 'notificatons';
+    singularName: 'notification';
+  };
+  options: {
+    draftAndPublish: false;
+    privateAttributes: ['createdAt', 'updatedAt'];
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean;
+    form: Schema.Attribute.Relation<'manyToOne', 'plugin::api-forms.form'>;
+    from: Schema.Attribute.String;
+    identifier: Schema.Attribute.Enumeration<['notification', 'confirmation']> &
+      Schema.Attribute.DefaultTo<'notification'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.notification'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.DefaultTo<''>;
+    publishedAt: Schema.Attribute.DateTime;
+    service: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'emailService'>;
+    subject: Schema.Attribute.String;
+    to: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsSetting extends Struct.SingleTypeSchema {
+  collectionName: 'settings';
+  info: {
+    displayName: 'Settings';
+    pluralName: 'settings';
+    singularName: 'setting';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    globalEmail: Schema.Attribute.Email;
+    globalErrorMessage: Schema.Attribute.RichText;
+    globalFromEmail: Schema.Attribute.Email;
+    globalFromName: Schema.Attribute.String;
+    globalSuccessMessage: Schema.Attribute.RichText;
+    html: Schema.Attribute.RichText;
+    htmlBgColor: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsSubmission extends Struct.CollectionTypeSchema {
+  collectionName: 'submissions';
+  info: {
+    displayName: 'submission';
+    pluralName: 'submissions';
+    singularName: 'submission';
+  };
+  options: {
+    draftAndPublish: false;
+    privateAttributes: ['createdAt', 'updatedAt'];
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    files: Schema.Attribute.Media<undefined, true>;
+    form: Schema.Attribute.Relation<'manyToOne', 'plugin::api-forms.form'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::api-forms.submission'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    referer: Schema.Attribute.String;
+    submission: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1452,9 +1707,11 @@ declare module '@strapi/strapi' {
       'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy': ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy;
       'api::bezopasnost-dokumenty.bezopasnost-dokumenty': ApiBezopasnostDokumentyBezopasnostDokumenty;
       'api::bezopasnost-fotografii.bezopasnost-fotografii': ApiBezopasnostFotografiiBezopasnostFotografii;
+      'api::bezopasnost-tekst.bezopasnost-tekst': ApiBezopasnostTekstBezopasnostTekst;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::istoriya-fotografii.istoriya-fotografii': ApiIstoriyaFotografiiIstoriyaFotografii;
+      'api::istoriya-tekst.istoriya-tekst': ApiIstoriyaTekstIstoriyaTekst;
       'api::kontakty.kontakty': ApiKontaktyKontakty;
       'api::materialno-tehnicheskaya-baza-fotografii.materialno-tehnicheskaya-baza-fotografii': ApiMaterialnoTehnicheskayaBazaFotografiiMaterialnoTehnicheskayaBazaFotografii;
       'api::materialno-tehnicheskaya-baza-tekst.materialno-tehnicheskaya-baza-tekst': ApiMaterialnoTehnicheskayaBazaTekstMaterialnoTehnicheskayaBazaTekst;
@@ -1467,6 +1724,10 @@ declare module '@strapi/strapi' {
       'api::vashi-proekty-fotografii.vashi-proekty-fotografii': ApiVashiProektyFotografiiVashiProektyFotografii;
       'api::vashi-proekty-tekst.vashi-proekty-tekst': ApiVashiProektyTekstVashiProektyTekst;
       'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost': ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost;
+      'plugin::api-forms.form': PluginApiFormsForm;
+      'plugin::api-forms.notification': PluginApiFormsNotification;
+      'plugin::api-forms.setting': PluginApiFormsSetting;
+      'plugin::api-forms.submission': PluginApiFormsSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

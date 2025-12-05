@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "your_project_texts",
+  "collectionName": "istoriya_teksts",
   "info": {
-    "singularName": "vashi-proekty-tekst",
-    "pluralName": "your-project-texts",
-    "displayName": "Ваши проекты - Текст"
+    "singularName": "istoriya-tekst",
+    "pluralName": "istoriya-teksts",
+    "displayName": "История - Текст"
   },
   "options": {
     "draftAndPublish": true

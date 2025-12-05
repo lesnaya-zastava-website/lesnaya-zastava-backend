@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "your_project_texts",
+  "collectionName": "bezopasnost_teksts",
   "info": {
-    "singularName": "vashi-proekty-tekst",
-    "pluralName": "your-project-texts",
-    "displayName": "Ваши проекты - Текст"
+    "singularName": "bezopasnost-tekst",
+    "pluralName": "bezopasnost-teksts",
+    "displayName": "Безопасность - Текст"
   },
   "options": {
     "draftAndPublish": true

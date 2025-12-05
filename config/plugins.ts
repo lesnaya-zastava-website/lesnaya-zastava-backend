@@ -1,1 +1,5 @@
-export default () => ({});
+export default () => ({
+  "api-forms": {
+    enabled: true,
+  },
+});
