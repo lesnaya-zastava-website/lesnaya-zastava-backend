@@ -394,7 +394,7 @@ export interface ApiAktualnyePredlozheniyaAktualnyePredlozheniya
       'api::aktualnye-predlozheniya.aktualnye-predlozheniya'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -414,7 +414,6 @@ export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,9 +423,8 @@ export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
       'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -484,7 +482,7 @@ export interface ApiBezopasnostFotografiiBezopasnostFotografii
       'api::bezopasnost-fotografii.bezopasnost-fotografii'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -550,6 +548,41 @@ export interface ApiDokumentyDokumenty extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInformacziyaDlyaRoditelejInformacziyaDlyaRoditelej
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'informacziya_dlya_roditelejs';
+  info: {
+    displayName: '\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u0434\u043B\u044F \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u0435\u0439';
+    pluralName: 'informacziya-dlya-roditelejs';
+    singularName: 'informacziya-dlya-roditelej';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::informacziya-dlya-roditelej.informacziya-dlya-roditelej'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -703,7 +736,7 @@ export interface ApiMaterialnoTehnicheskayaBazaFotografiiMaterialnoTehnicheskaya
       'api::materialno-tehnicheskaya-baza-fotografii.materialno-tehnicheskaya-baza-fotografii'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -733,7 +766,13 @@ export interface ApiMaterialnoTehnicheskayaBazaTekstMaterialnoTehnicheskayaBazaT
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.Text;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -856,8 +895,78 @@ export interface ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgr
       'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPravilaPrebyvaniyaVDolLesnayaZastavaPravilaPrebyvaniyaVDolLesnayaZastava
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'pravila_prebyvaniya_v_dol_lesnaya_zastavas';
+  info: {
+    displayName: '\u041F\u0440\u0430\u0432\u0438\u043B\u0430 \u043F\u0440\u0435\u0431\u044B\u0432\u0430\u043D\u0438\u044F \u0432 \u0414\u041E\u041B "\u041B\u0435\u0441\u043D\u0430\u044F \u0437\u0430\u0441\u0442\u0430\u0432\u0430"';
+    pluralName: 'pravila-prebyvaniya-v-dol-lesnaya-zastavas';
+    singularName: 'pravila-prebyvaniya-v-dol-lesnaya-zastava';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pravila-prebyvaniya-v-dol-lesnaya-zastava.pravila-prebyvaniya-v-dol-lesnaya-zastava'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSemejnyjFestivalMayovkaTekstSemejnyjFestivalMayovkaTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'semejnyj_festival_mayovka_teksts';
+  info: {
+    displayName: '\u0421\u0435\u043C\u0435\u0439\u043D\u044B\u0439 \u0444\u0435\u0441\u0442\u0438\u0432\u0430\u043B\u044C "\u041C\u0430\u0451\u0432\u043A\u0430" - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'semejnyj-festival-mayovka-teksts';
+    singularName: 'semejnyj-festival-mayovka-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::semejnyj-festival-mayovka-tekst.semejnyj-festival-mayovka-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -868,7 +977,7 @@ export interface ApiSemejnyjFestivalMayovkaSemejnyjFestivalMayovka
   extends Struct.CollectionTypeSchema {
   collectionName: 'maevka';
   info: {
-    displayName: '\u0421\u0435\u043C\u0435\u0439\u043D\u044B\u0439 \u0444\u0435\u0441\u0442\u0438\u0432\u0430\u043B\u044C "\u041C\u0430\u0451\u0432\u043A\u0430"';
+    displayName: '\u0421\u0435\u043C\u0435\u0439\u043D\u044B\u0439 \u0444\u0435\u0441\u0442\u0438\u0432\u0430\u043B\u044C "\u041C\u0430\u0451\u0432\u043A\u0430" - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
     pluralName: 'maevka';
     singularName: 'semejnyj-festival-mayovka';
   };
@@ -885,8 +994,78 @@ export interface ApiSemejnyjFestivalMayovkaSemejnyjFestivalMayovka
       'api::semejnyj-festival-mayovka.semejnyj-festival-mayovka'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSpisokNeobhodimyhDokumentovSpisokNeobhodimyhDokumentov
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'spisok_neobhodimyh_dokumentovs';
+  info: {
+    displayName: '\u0421\u043F\u0438\u0441\u043E\u043A \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u044B\u0445 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u043E\u0432';
+    pluralName: 'spisok-neobhodimyh-dokumentovs';
+    singularName: 'spisok-neobhodimyh-dokumentov';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::spisok-neobhodimyh-dokumentov.spisok-neobhodimyh-dokumentov'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSpisokNeobhodimyhVeshhejSpisokNeobhodimyhVeshhej
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'spisok_neobhodimyh_veshhejs';
+  info: {
+    displayName: '\u0421\u043F\u0438\u0441\u043E\u043A \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u044B\u0445 \u0432\u0435\u0449\u0435\u0439';
+    pluralName: 'spisok-neobhodimyh-veshhejs';
+    singularName: 'spisok-neobhodimyh-veshhej';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::spisok-neobhodimyh-veshhej.spisok-neobhodimyh-veshhej'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -914,7 +1093,7 @@ export interface ApiStoimostUslugStoimostUslug
       'api::stoimost-uslug.stoimost-uslug'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -943,7 +1122,7 @@ export interface ApiVashiProektyFotografiiVashiProektyFotografii
       'api::vashi-proekty-fotografii.vashi-proekty-fotografii'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -986,11 +1165,46 @@ export interface ApiVashiProektyTekstVashiProektyTekst
   };
 }
 
+export interface ApiVzroslayaSmenaProYunostTekstVzroslayaSmenaProYunostTekst
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'vzroslaya_smena_pro_yunost_teksts';
+  info: {
+    displayName: '\u0412\u0437\u0440\u043E\u0441\u043B\u0430\u044F \u0441\u043C\u0435\u043D\u0430 "Pro_\u042E\u043D\u043E\u0441\u0442\u044C" - \u0422\u0435\u043A\u0441\u0442';
+    pluralName: 'vzroslaya-smena-pro-yunost-teksts';
+    singularName: 'vzroslaya-smena-pro-yunost-tekst';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vzroslaya-smena-pro-yunost-tekst.vzroslaya-smena-pro-yunost-tekst'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost
   extends Struct.CollectionTypeSchema {
   collectionName: 'vzroslaya_smena_pro_yunost_posts';
   info: {
-    displayName: '\u0412\u0437\u0440\u043E\u0441\u043B\u0430\u044F \u0441\u043C\u0435\u043D\u0430 "Pro_\u042E\u043D\u043E\u0441\u0442\u044C"';
+    displayName: '\u0412\u0437\u0440\u043E\u0441\u043B\u0430\u044F \u0441\u043C\u0435\u043D\u0430 "Pro_\u042E\u043D\u043E\u0441\u0442\u044C" - \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438';
     pluralName: 'vzroslaya-smena-pro-yunost-posts';
     singularName: 'vzroslaya-smena-pro-yunost';
   };
@@ -1007,7 +1221,7 @@ export interface ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost
       'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
+    photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1709,6 +1923,7 @@ declare module '@strapi/strapi' {
       'api::bezopasnost-fotografii.bezopasnost-fotografii': ApiBezopasnostFotografiiBezopasnostFotografii;
       'api::bezopasnost-tekst.bezopasnost-tekst': ApiBezopasnostTekstBezopasnostTekst;
       'api::dokumenty.dokumenty': ApiDokumentyDokumenty;
+      'api::informacziya-dlya-roditelej.informacziya-dlya-roditelej': ApiInformacziyaDlyaRoditelejInformacziyaDlyaRoditelej;
       'api::infrastruktura-galereya.infrastruktura-galereya': ApiInfrastrukturaGalereyaInfrastrukturaGalereya;
       'api::istoriya-fotografii.istoriya-fotografii': ApiIstoriyaFotografiiIstoriyaFotografii;
       'api::istoriya-tekst.istoriya-tekst': ApiIstoriyaTekstIstoriyaTekst;
@@ -1719,10 +1934,15 @@ declare module '@strapi/strapi' {
       'api::nashi-proekty.nashi-proekty': ApiNashiProektyNashiProekty;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
       'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug': ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug;
+      'api::pravila-prebyvaniya-v-dol-lesnaya-zastava.pravila-prebyvaniya-v-dol-lesnaya-zastava': ApiPravilaPrebyvaniyaVDolLesnayaZastavaPravilaPrebyvaniyaVDolLesnayaZastava;
+      'api::semejnyj-festival-mayovka-tekst.semejnyj-festival-mayovka-tekst': ApiSemejnyjFestivalMayovkaTekstSemejnyjFestivalMayovkaTekst;
       'api::semejnyj-festival-mayovka.semejnyj-festival-mayovka': ApiSemejnyjFestivalMayovkaSemejnyjFestivalMayovka;
+      'api::spisok-neobhodimyh-dokumentov.spisok-neobhodimyh-dokumentov': ApiSpisokNeobhodimyhDokumentovSpisokNeobhodimyhDokumentov;
+      'api::spisok-neobhodimyh-veshhej.spisok-neobhodimyh-veshhej': ApiSpisokNeobhodimyhVeshhejSpisokNeobhodimyhVeshhej;
       'api::stoimost-uslug.stoimost-uslug': ApiStoimostUslugStoimostUslug;
       'api::vashi-proekty-fotografii.vashi-proekty-fotografii': ApiVashiProektyFotografiiVashiProektyFotografii;
       'api::vashi-proekty-tekst.vashi-proekty-tekst': ApiVashiProektyTekstVashiProektyTekst;
+      'api::vzroslaya-smena-pro-yunost-tekst.vzroslaya-smena-pro-yunost-tekst': ApiVzroslayaSmenaProYunostTekstVzroslayaSmenaProYunostTekst;
       'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost': ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost;
       'plugin::api-forms.form': PluginApiFormsForm;
       'plugin::api-forms.notification': PluginApiFormsNotification;

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "technical_base_texts",
+  "collectionName": "semejnyj_festival_mayovka_teksts",
   "info": {
-    "singularName": "materialno-tehnicheskaya-baza-tekst",
-    "pluralName": "technical-base-texts",
-    "displayName": "Материально - техническая база - Текст"
+    "singularName": "semejnyj-festival-mayovka-tekst",
+    "pluralName": "semejnyj-festival-mayovka-teksts",
+    "displayName": "Семейный фестиваль \"Маёвка\" - Текст"
   },
   "options": {
     "draftAndPublish": true

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "vzroslaya-smena-pro-yunost",
     "pluralName": "vzroslaya-smena-pro-yunost-posts",
-    "displayName": "Взрослая смена \"Pro_Юность\""
+    "displayName": "Взрослая смена \"Pro_Юность\" - Фотографии"
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +13,7 @@
   "attributes": {
     "photo": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images"
       ]

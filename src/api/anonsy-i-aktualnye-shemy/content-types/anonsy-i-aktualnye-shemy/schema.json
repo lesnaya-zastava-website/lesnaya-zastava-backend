@@ -13,16 +13,10 @@
   "attributes": {
     "photo": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images"
       ]
-    },
-    "title": {
-      "type": "string"
-    },
-    "content": {
-      "type": "string"
     }
   }
 }

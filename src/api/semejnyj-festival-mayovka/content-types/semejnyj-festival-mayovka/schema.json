@@ -4,7 +4,7 @@
   "info": {
     "singularName": "semejnyj-festival-mayovka",
     "pluralName": "maevka",
-    "displayName": "Семейный фестиваль \"Маёвка\""
+    "displayName": "Семейный фестиваль \"Маёвка\" - Фотографии"
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +13,7 @@
   "attributes": {
     "photo": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images"
       ]
