@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "kontakties",
+  "collectionName": "osnovnye_svedeniyas",
   "info": {
-    "singularName": "kontakty",
-    "pluralName": "kontakties",
-    "displayName": "Контакты"
+    "singularName": "osnovnye-svedeniya",
+    "pluralName": "osnovnye-svedeniyas",
+    "displayName": "Основные сведения"
   },
   "options": {
     "draftAndPublish": true

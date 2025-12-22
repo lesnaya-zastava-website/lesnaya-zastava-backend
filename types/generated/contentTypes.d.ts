@@ -686,10 +686,10 @@ export interface ApiIstoriyaTekstIstoriyaTekst
 }
 
 export interface ApiKontaktyKontakty extends Struct.CollectionTypeSchema {
-  collectionName: 'contacts_photos';
+  collectionName: 'kontakties';
   info: {
     displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
-    pluralName: 'contacts-photos';
+    pluralName: 'kontakties';
     singularName: 'kontakty';
   };
   options: {
@@ -699,16 +699,20 @@ export interface ApiKontaktyKontakty extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::kontakty.kontakty'
     > &
       Schema.Attribute.Private;
-    photo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -836,6 +840,41 @@ export interface ApiNashiProektyNashiProekty
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOsnovnyeSvedeniyaOsnovnyeSvedeniya
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'osnovnye_svedeniyas';
+  info: {
+    displayName: '\u041E\u0441\u043D\u043E\u0432\u043D\u044B\u0435 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F';
+    pluralName: 'osnovnye-svedeniyas';
+    singularName: 'osnovnye-svedeniya';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::osnovnye-svedeniya.osnovnye-svedeniya'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1223,185 +1262,6 @@ export interface ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost
       Schema.Attribute.Private;
     photo: Schema.Attribute.Media<'images', true>;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface PluginApiFormsForm extends Struct.CollectionTypeSchema {
-  collectionName: 'forms';
-  info: {
-    displayName: 'form';
-    pluralName: 'forms';
-    singularName: 'form';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: true;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    dateFrom: Schema.Attribute.String;
-    dateTill: Schema.Attribute.String;
-    errorMessage: Schema.Attribute.Text & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.form'
-    > &
-      Schema.Attribute.Private;
-    notifications: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.notification'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    steps: Schema.Attribute.JSON;
-    submissions: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.submission'
-    >;
-    successMessage: Schema.Attribute.Text & Schema.Attribute.Required;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface PluginApiFormsNotification
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'notification';
-  info: {
-    displayName: 'Email notifications';
-    pluralName: 'notificatons';
-    singularName: 'notification';
-  };
-  options: {
-    draftAndPublish: false;
-    privateAttributes: ['createdAt', 'updatedAt'];
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    enabled: Schema.Attribute.Boolean;
-    form: Schema.Attribute.Relation<'manyToOne', 'plugin::api-forms.form'>;
-    from: Schema.Attribute.String;
-    identifier: Schema.Attribute.Enumeration<['notification', 'confirmation']> &
-      Schema.Attribute.DefaultTo<'notification'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.notification'
-    > &
-      Schema.Attribute.Private;
-    message: Schema.Attribute.Text & Schema.Attribute.DefaultTo<''>;
-    publishedAt: Schema.Attribute.DateTime;
-    service: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<'emailService'>;
-    subject: Schema.Attribute.String;
-    to: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface PluginApiFormsSetting extends Struct.SingleTypeSchema {
-  collectionName: 'settings';
-  info: {
-    displayName: 'Settings';
-    pluralName: 'settings';
-    singularName: 'setting';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: true;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    globalEmail: Schema.Attribute.Email;
-    globalErrorMessage: Schema.Attribute.RichText;
-    globalFromEmail: Schema.Attribute.Email;
-    globalFromName: Schema.Attribute.String;
-    globalSuccessMessage: Schema.Attribute.RichText;
-    html: Schema.Attribute.RichText;
-    htmlBgColor: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.setting'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface PluginApiFormsSubmission extends Struct.CollectionTypeSchema {
-  collectionName: 'submissions';
-  info: {
-    displayName: 'submission';
-    pluralName: 'submissions';
-    singularName: 'submission';
-  };
-  options: {
-    draftAndPublish: false;
-    privateAttributes: ['createdAt', 'updatedAt'];
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: true;
-    };
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    files: Schema.Attribute.Media<undefined, true>;
-    form: Schema.Attribute.Relation<'manyToOne', 'plugin::api-forms.form'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::api-forms.submission'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    referer: Schema.Attribute.String;
-    submission: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1932,6 +1792,7 @@ declare module '@strapi/strapi' {
       'api::materialno-tehnicheskaya-baza-tekst.materialno-tehnicheskaya-baza-tekst': ApiMaterialnoTehnicheskayaBazaTekstMaterialnoTehnicheskayaBazaTekst;
       'api::nasha-komanda.nasha-komanda': ApiNashaKomandaNashaKomanda;
       'api::nashi-proekty.nashi-proekty': ApiNashiProektyNashiProekty;
+      'api::osnovnye-svedeniya.osnovnye-svedeniya': ApiOsnovnyeSvedeniyaOsnovnyeSvedeniya;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
       'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug': ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug;
       'api::pravila-prebyvaniya-v-dol-lesnaya-zastava.pravila-prebyvaniya-v-dol-lesnaya-zastava': ApiPravilaPrebyvaniyaVDolLesnayaZastavaPravilaPrebyvaniyaVDolLesnayaZastava;
@@ -1944,10 +1805,6 @@ declare module '@strapi/strapi' {
       'api::vashi-proekty-tekst.vashi-proekty-tekst': ApiVashiProektyTekstVashiProektyTekst;
       'api::vzroslaya-smena-pro-yunost-tekst.vzroslaya-smena-pro-yunost-tekst': ApiVzroslayaSmenaProYunostTekstVzroslayaSmenaProYunostTekst;
       'api::vzroslaya-smena-pro-yunost.vzroslaya-smena-pro-yunost': ApiVzroslayaSmenaProYunostVzroslayaSmenaProYunost;
-      'plugin::api-forms.form': PluginApiFormsForm;
-      'plugin::api-forms.notification': PluginApiFormsNotification;
-      'plugin::api-forms.setting': PluginApiFormsSetting;
-      'plugin::api-forms.submission': PluginApiFormsSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
