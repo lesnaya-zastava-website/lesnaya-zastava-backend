@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_czentr_lageryas",
+  "info": {
+    "singularName": "media-czentr-lagerya",
+    "pluralName": "media-czentr-lageryas",
+    "displayName": "Медиа-центр лагеря"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "photo": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

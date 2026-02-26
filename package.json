@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.3",
+    "@cm3tahkuh/strapi-api-forms": "^2.4.5",
     "@strapi/plugin-cloud": "5.16.0",
     "@strapi/plugin-users-permissions": "5.16.0",
     "@strapi/strapi": "5.16.0",

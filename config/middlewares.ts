@@ -5,7 +5,14 @@ export default [
   {
     name: "strapi::cors",
     config: {
-      origin: ["https://leznaya-zastava.ydns.eu", "http://localhost:5174", "http://192.168.0.104:5174"],
+      origin: [
+        "https://lzastava.com",
+        "http://lzastava.com",
+        "https://test.lzastava.com",
+        "http://test.lzastava.com",
+        // "http://localhost:5174",
+        "http://192.168.0.104:5174",
+      ],
       methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
       headers: "*",
     },
