@@ -431,6 +431,41 @@ export interface ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy
   };
 }
 
+export interface ApiBannerCookieBannerCookie
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'banner_cookies';
+  info: {
+    displayName: '\u0411\u0430\u043D\u043D\u0435\u0440 Cookie';
+    pluralName: 'banner-cookies';
+    singularName: 'banner-cookie';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::banner-cookie.banner-cookie'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBezopasnostDokumentyBezopasnostDokumenty
   extends Struct.CollectionTypeSchema {
   collectionName: 'safety_docs';
@@ -969,6 +1004,41 @@ export interface ApiPedagogicheskijSostavPedagogicheskijSostav
     publishedAt: Schema.Attribute.DateTime;
     qualification: Schema.Attribute.String;
     specialization: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPolitikaObrabotkiPersonalnyhDannyhPolitikaObrabotkiPersonalnyhDannyh
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'politika_obrabotki_personalnyh_dannyhs';
+  info: {
+    displayName: '\u041F\u043E\u043B\u0438\u0442\u0438\u043A\u0430 \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0438 \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u044C\u043D\u044B\u0445 \u0434\u0430\u043D\u043D\u044B\u0445';
+    pluralName: 'politika-obrabotki-personalnyh-dannyhs';
+    singularName: 'politika-obrabotki-personalnyh-dannyh';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::politika-obrabotki-personalnyh-dannyh.politika-obrabotki-personalnyh-dannyh'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    textHtml: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2022,6 +2092,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::aktualnye-predlozheniya.aktualnye-predlozheniya': ApiAktualnyePredlozheniyaAktualnyePredlozheniya;
       'api::anonsy-i-aktualnye-shemy.anonsy-i-aktualnye-shemy': ApiAnonsyIAktualnyeShemyAnonsyIAktualnyeShemy;
+      'api::banner-cookie.banner-cookie': ApiBannerCookieBannerCookie;
       'api::bezopasnost-dokumenty.bezopasnost-dokumenty': ApiBezopasnostDokumentyBezopasnostDokumenty;
       'api::bezopasnost-fotografii.bezopasnost-fotografii': ApiBezopasnostFotografiiBezopasnostFotografii;
       'api::bezopasnost-tekst.bezopasnost-tekst': ApiBezopasnostTekstBezopasnostTekst;
@@ -2039,6 +2110,7 @@ declare module '@strapi/strapi' {
       'api::nashi-proekty.nashi-proekty': ApiNashiProektyNashiProekty;
       'api::osnovnye-svedeniya.osnovnye-svedeniya': ApiOsnovnyeSvedeniyaOsnovnyeSvedeniya;
       'api::pedagogicheskij-sostav.pedagogicheskij-sostav': ApiPedagogicheskijSostavPedagogicheskijSostav;
+      'api::politika-obrabotki-personalnyh-dannyh.politika-obrabotki-personalnyh-dannyh': ApiPolitikaObrabotkiPersonalnyhDannyhPolitikaObrabotkiPersonalnyhDannyh;
       'api::prajs-razvlekatelnyh-programm-i-dop-uslug.prajs-razvlekatelnyh-programm-i-dop-uslug': ApiPrajsRazvlekatelnyhProgrammIDopUslugPrajsRazvlekatelnyhProgrammIDopUslug;
       'api::pravila-prebyvaniya-v-dol-lesnaya-zastava.pravila-prebyvaniya-v-dol-lesnaya-zastava': ApiPravilaPrebyvaniyaVDolLesnayaZastavaPravilaPrebyvaniyaVDolLesnayaZastava;
       'api::semejnyj-festival-mayovka-tekst.semejnyj-festival-mayovka-tekst': ApiSemejnyjFestivalMayovkaTekstSemejnyjFestivalMayovkaTekst;

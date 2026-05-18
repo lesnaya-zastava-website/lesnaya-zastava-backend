@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banner_cookies",
+  "info": {
+    "singularName": "banner-cookie",
+    "pluralName": "banner-cookies",
+    "displayName": "Баннер Cookie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "textHtml": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "required": false
+    }
+  }
+}
